@@ -36,7 +36,7 @@ describe("#RequestProvider", function(){
   it("should sendData", function(done){
     var request = new RequestProvider({id:"test", dirname: __dirname});
     request.addTo(app);
-    request.client.emit("invoke-rule", {predicate:"request(Url, ContentType)", groundings:["http://localhost", "application/x-www-form-urlencoded"], payload:"hello world"});
+    request.client.emit("invoke-rule", {predicate:"request(Url, ContentType)", groundings:["http://localhost", "application/x-www-form-urlencoded"], payloads:"hello world"});
     setTimeout(function(){
       done();
     }, 500)
