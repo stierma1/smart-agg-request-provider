@@ -36,7 +36,7 @@ describe("#RequestProvider", function(){
   it("should sendData", function(done){
     var request = new RequestProvider({id:"test", dirname: __dirname});
     request.addTo(app);
-    request.client.emit("invoke-rule", {predicate:"request(Url)", groundings:["http://localhost", "application/x-www-form-urlencoded"], payloads:"hello world"});
+    request.client.emit("invoke-rule", {predicate:"request(Url)", groundings:["http://localhost"], payloads:{data:"hello world"}});
     setTimeout(function(){
       done();
     }, 500)
@@ -45,7 +45,7 @@ describe("#RequestProvider", function(){
   it.skip("should transform sendData", function(done){
     var writer = new FsWriter({id:"test", dirname: __dirname, transforms:{"bacon" : function(){return "bacon";}}});
     writer.addTo(app);
-    writer.client.emit("invoke-rule", {predicate:"write(FileName, Mode, Transform)", groundings:["test1.txt", "overwrite", "bacon"], payload:"hello world"});
+    writer.client.emit("invoke-rule", {predicate:"write(FileName, Transform)", groundings:["test1.txt", "bacon"], payload:"hello world"});
     setTimeout(function(){
       done(new Error("Set Sail for fail"));
     }, 500)
